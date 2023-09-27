@@ -18,11 +18,22 @@ class MainActivity : AppCompatActivity() {
         // Initialize with views defined in Layout - the first one is done for you
         displayTextView = findViewById(R.id.displayTextView)
 
-        
+        //Access text view outside of setOnClickListener
+        val userEntered = findViewById<EditText>(R.id.nameEditText)
+
         findViewById<Button>(R.id.clickMeButton).setOnClickListener {
-            displayTextView.text = "Hello, ${findViewById<EditText>(R.id.nameEditText).text}"
+            if (userEntered.isEmpty()) {
+                displayTextView.error = "You need to enter your name"
+            } else {
+                displayTextView.text = "Hello, ${userEntered.text}"
+            }
+
+
         }
-
-
     }
+
+    private fun EditText.isEmpty(): Boolean {
+        TODO("Not yet implemented")
+    }
+
 }
